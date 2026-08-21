@@ -1,0 +1,41 @@
+{
+  "notify_target": {
+    "type": "list",
+    "description": "通知目标",
+    "hint": "每个目标一个条目，格式：实例ID:会话类型:会话ID（如 aiocqhttp:群聊:123456789）。自动转换：群聊→GroupMessage、私聊→FriendMessage。多个目标点「添加」增加条目。",
+    "default": []
+  },
+  "monitor_all_groups": {
+    "type": "bool",
+    "description": "监听所有群聊",
+    "hint": "开启后自动监听所有群聊（包括新加入的群），忽略下方监听群列表",
+    "default": false
+  },
+  "watch_groups": {
+    "type": "list",
+    "description": "监听群列表",
+    "hint": "要监听的群号列表，留空表示所有群",
+    "default": [],
+    "condition": {
+      "monitor_all_groups": false
+    }
+  },
+  "notify_template": {
+    "type": "string",
+    "description": "通知消息模板",
+    "hint": "占位符：{group_name}=群名 {group_id}=群号 {sender_name}=发送者昵称 {sender_id}=发送者QQ号",
+    "default": "🧧红包提醒！\\n群：{group_name} ({group_id})\\n发送者：{sender_name} ({sender_id})\\n\\n快去抢！"
+  },
+  "reset_template": {
+    "type": "string",
+    "description": "默认模版",
+    "hint": "【默认模版，复制到上方即可恢复】\n🧧红包提醒！\\n群：{group_name} ({group_id})\\n发送者：{sender_name} ({sender_id})\\n\\n快去抢！",
+    "options": [
+      "-"
+    ],
+    "labels": [
+      "-"
+    ],
+    "default": "-"
+  }
+}
