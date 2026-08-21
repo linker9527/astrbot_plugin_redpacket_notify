@@ -1,4 +1,5 @@
-name: 红包提醒插件
+name: astrbot_plugin_redpacket_notify
+display_name: 红包提醒插件
 desc: QQ红包提醒插件，群里有红包时自动私聊通知你
 help: 配置 notify_target 为接收通知的私聊会话（格式：平台名:私聊ID），配置 watch_groups 指定监听的群
 version: 1.0.11
