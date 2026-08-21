@@ -148,7 +148,6 @@ class RedPacketNotifyPlugin(Star):
         )
 
         if self.notify_targets:
-            success_any = False
             for target in self.notify_targets:
                 try:
                     from astrbot.core.platform.message_session import MessageSession
@@ -161,7 +160,6 @@ class RedPacketNotifyPlugin(Star):
                     )
                     if ok:
                         logger.info(f"[红包提醒] 文字通知发送成功: {target}")
-                        success_any = True
                         # 再发群名片（点击可跳转到群）
                         try:
                             gid_int = int(gid) if gid and gid.isdigit() else None
@@ -182,8 +180,4 @@ class RedPacketNotifyPlugin(Star):
                 except Exception as e:
                     logger.warning(f"[红包提醒] 发送异常: {target} -> {e}")
 
-            if not success_any:
-                logger.warning("[红包提醒] 所有目标发送失败，在群里回复")
-                await event.send(event.plain_result(f"🧧红包提醒！{sname}在 {group_name} 发了红包"))
-        else:
-            await event.send(event.plain_result(f"🧧红包提醒！{sname}在 {group_name} 发了红包"))
+            # 方案A：发送失败不降级回复，静默处理
