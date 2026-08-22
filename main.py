@@ -172,9 +172,7 @@ class RedPacketNotifyPlugin(Star):
                         except Exception as ce:
                             logger.warning(f"[红包提醒] 群名片发送失败(不影响通知): {ce}")
                     else:
-                        # 找不到匹配平台，打印可用列表
-                        available = [p.meta().id for p in self.context.platform_manager.platform_insts]
-                        logger.warning(f"[红包提醒] 发送失败: 未找到平台 '{s.platform_name}'，可用: {available}")
+                        logger.warning(f"[红包提醒] 发送失败: 未找到平台 '{s.platform_name}'，请检查 notify_target 配置中的平台名是否正确")
                 except asyncio.TimeoutError:
                     logger.warning(f"[红包提醒] 发送超时(10s): {target}")
                 except Exception as e:
